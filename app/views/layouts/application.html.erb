@@ -11,6 +11,30 @@
   </head>
 
   <body>
+  <header>
+  <div class="header_container">
+    <div class="header_items">
+      <p class="header_title">Potepan Share</p>
+    </div>
+    <div class="header_buttons">
+      <button class="header_button"><%= link_to "ログイン",new_user_session_path %></button>
+      <button class="header_button"><%= link_to "新規登録",new_user_registration_path %></button>
+    </div>
+  </div>
+
+  </header>
+
+  
     <%= yield %>
+
+  <footer>
+  <div class="footer_container">
+    <div class="footer_items">
+      <p class="footer_title">Potepan Share</p>
+      <p class="footer_subtitle">Copyright © Potepan Share2024 All rights reserved</p>
+    </div>
+  </div>
+  </footer>
+
   </body>
 </html>
