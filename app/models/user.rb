@@ -3,6 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :validatable
+         
+
+  validates :name, presence: true
+
+  mount_uploader :image, ImageUploader
 
 def show
   @user = User.find(id:params[id])

@@ -9,6 +9,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
    end
 
+   def create
+    @user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation))
+    @user.user_img =  "default.png"
+    @user.save
+    redirect_to "/"
+   end
+
+
+   def profile_update
+    @user = current_user
+    if @user.update(params.require(:user).permit(:name, :introduction, :user_img ))
+      redirect_to "/"    
+    else
+      render "/"
+    end
+
+
+
+    
+
+    
+    
+  end
+
+
+ 
   # POST /resource
   # def create
   #   super
@@ -38,7 +64,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  #protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
