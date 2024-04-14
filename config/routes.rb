@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'reservations/index'
+  get 'resarvations/index'
+  get 'rooms/index'
   root to: "home#index"
   devise_for :users, controllers: {
     registrations:  'users/registrations',
@@ -11,12 +14,24 @@ Rails.application.routes.draw do
     patch 'profile_update', to: 'users/registrations#profile_update'
   end
 
-
-
  get "/users/show" => "users#show"
  get "/users/profile" => "users#profile"
  get "/users/profile/edit" => "users#profile_edit"
  
+  resources :rooms do
+    collection do
+      get "search"
+      get "room/area/search"
+    end
+  end
+
+  resources :reservations 
+
+  get "/confirm/reservation" => "reservations#confirm"
+  
+
+  get "/search" => "rooms#room_search_result"
+  get "/area/search" => "rooms#area_search_result"
 
 
 end

@@ -1,0 +1,36 @@
+<div>
+<%= link_to "←戻る", :back %>
+<%= link_to "編集", "/rooms/#{@room.id}/edit" %>
+</div>
+
+<%= image_tag @room.room_img.url %>
+
+<div>
+<h2><%= @room.name %></h2>
+<h3><%= @room.price %></h3>
+<p><%= @room.address %></p>
+<p><%= @room.room_introduction %></p>
+
+</div>
+
+<%= form_with  model: @reservation, url: confirm_reservation_path, method: :get do |f| %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+   
+<table>
+<tr>
+<th>チェックイン</th>
+<td><%= f.date_field :check_in_date %></td>
+</tr>
+<tr>
+<th>チェックアウト</th>
+<td><%= f.date_field :check_out_date %></td>
+</tr>
+<tr>
+<th>人数</th>
+<td><%= f.number_field :people_number, min: 1 %></td>
+</tr>
+</table>
+<%= f.submit "予約する" %>
+<% end %>
+
+ 

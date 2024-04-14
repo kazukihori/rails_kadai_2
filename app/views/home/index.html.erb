@@ -1,5 +1,11 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Potepan Shareでまだ体験したことのない旅をしよう</h1>
+
+<div>
+<%= form_tag(area_search_path, method: :get) do %>
+    <%= text_field_tag :search, placeholder="エリア名を入力" %>
+    <%= submit_tag "検索", :name => nil %>
+    <% end %>
+</div>
 <%= link_to "アカウント設定","/users/show" %>
 <%= link_to "プロフィール設定","/users/profile" %>
 <%= link_to "ログアウト", destroy_user_session_path,method: :delete %>

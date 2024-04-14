@@ -14,13 +14,22 @@
   <header>
   <div class="header_container">
     <div class="header_items">
-      <p class="header_title">Potepan Share</p>
+      <p class="header_title"><%= link_to "Potepan Share", "/" %></p>
     </div>
+    <% if user_signed_in? %>
     <div class="header_buttons">
+      <%= image_tag current_user.user_img.url class: "header_buttons" %>
+      <p class="header_button"><%= "#{current_user.name}"%></p>
+      <button><%= link_to "施設の新規登録", new_room_path %></button>
+      <button><%= link_to "登録済み一覧", rooms_index_path %></button>
+    </div> 
+    <% else %>
+    <div class= "header_buttons">
       <button class="header_button"><%= link_to "ログイン",new_user_session_path %></button>
       <button class="header_button"><%= link_to "新規登録",new_user_registration_path %></button>
     </div>
   </div>
+  <% end %>
 
   </header>
 

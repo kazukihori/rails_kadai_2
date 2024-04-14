@@ -7,7 +7,10 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :user_img, UserImgUploader
+
+  has_many :rooms
+  has_many :reservations
 
 def show
   @user = User.find(id:params[id])
