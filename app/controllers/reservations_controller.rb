@@ -2,7 +2,7 @@ class ReservationsController < ApplicationController
   def index 
     
     @reservations = current_user.reservations
-    @room = Room.all
+    
     
   end
 
