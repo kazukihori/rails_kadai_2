@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+ 
+
+
   get 'reservations/index'
   get 'resarvations/index'
   get 'rooms/index'

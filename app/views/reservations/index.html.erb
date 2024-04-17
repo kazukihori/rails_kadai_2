@@ -1,13 +1,16 @@
-<h1予約済み一覧</h1>
+<h2>予約済み一覧</h2>
 
 <table>
 <tr>
 <th>施設画像</th><th>施設名</th><th>施設紹介</th><th>合計料金</th><th>チェックイン</th><th>チェックアウト</th><th>予約確定日時</th>
 </tr>
 <% @reservations.each do |reservation| %>
+
 <tr>
-<td><%= image_tag reservation.room.room_img.url%></td><td><%= reservation.room.name %></td><td><%= reservation.room.room_introduction %></td><td><%= reservation.total_price %></td><td><%= reservation.check_in_date %></td><td><%= reservation.check_out_date %></td>#<td><%= link_to "編集" , "/reservatu/#{room.id}/edit" %></td>#
+<td><%= image_tag reservation.room.room_img.url%></td><td><%= reservation.room.name %></td><td><%= reservation.room.room_introduction %></td><td><%= reservation.total_price %></td><td><%= reservation.check_in_date %></td><td><%= reservation.check_out_date %></td><td><%= reservation.created_at %></td>
 </tr>
-</table>
+
+
 <% end %>
+</table>
 
