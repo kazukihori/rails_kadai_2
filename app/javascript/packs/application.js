@@ -12,4 +12,4 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-require("../../../public/script.js")
+require("../../../public/dropdown.js")
