@@ -9,6 +9,7 @@ class RoomsController < ApplicationController
     @reservation = Reservation.new
     
     
+    
   end
 
   def new

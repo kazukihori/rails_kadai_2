@@ -8,8 +8,12 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-Rails.start()
+//Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-require("../../../public/dropdown.js")
+//= require_tree .
+
+//require("../../../public/dropdown.js")
+
+//import "../../../public/dropdown.js"

@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  require 'active_support/all'
   def index 
     
     @reservations = current_user.reservations
@@ -8,8 +9,8 @@ class ReservationsController < ApplicationController
 
   def confirm
 
-    @room = Room.find_by(params[:reservation][:room_id])
-
+    @room = Room.find(params[:reservation][:room_id])
+   
     
     @reservation = Reservation.new(
       room_id: params[:reservation][:room_id],
@@ -18,12 +19,15 @@ class ReservationsController < ApplicationController
       people_number: params[:reservation][:people_number],
       user_id: current_user.id
     )
-
     
-
-    @stay_date = @reservation.check_out_date - @reservation.check_in_date
-    @reservation.total_price  = @room.price * @reservation.people_number * @stay_date
-
+    if @reservation.valid?
+      @stay_date = (@reservation.check_out_date - @reservation.check_in_date).to_i
+      @reservation.total_price  = @room.price * @reservation.people_number * @stay_date
+      redirect_to "/confirm/reservation"
+    else
+      #@room = Room.find(params[:reservation][:room_id])#
+      render "rooms/show"
+    end
   end
 
   def create
