@@ -8,25 +8,19 @@ class ReservationsController < ApplicationController
   end
 
   def confirm
-
-    @room = Room.find(params[:reservation][:room_id])
+    
    
-    
-    @reservation = Reservation.new(
-      room_id: params[:reservation][:room_id],
-      check_in_date: params[:reservation][:check_in_date],
-      check_out_date: params[:reservation][:check_out_date],
-      people_number: params[:reservation][:people_number],
-      user_id: current_user.id
-    )
-    
+   
+  
+    @reservation = Reservation.new(reservation_create)
+    @room = @reservation.room
     if @reservation.valid?
       @stay_date = (@reservation.check_out_date - @reservation.check_in_date).to_i
       @reservation.total_price  = @room.price * @reservation.people_number * @stay_date
       redirect_to "/confirm/reservation"
     else
-      #@room = Room.find(params[:reservation][:room_id])#
       render "rooms/show"
+      binding.pry
     end
   end
 
@@ -36,7 +30,6 @@ class ReservationsController < ApplicationController
       check_in_date: params[:reservation][:check_in_date],
       check_out_date: params[:reservation][:check_out_date],
       people_number: params[:reservation][:people_number],
-      user_id: current_user.id,
       total_price: params[:reservation][:total_price]
     )
 
@@ -46,6 +39,10 @@ class ReservationsController < ApplicationController
     
   end
   
+
+  def reservation_create
+    params.require(:reservation).permit(:room_id, :check_in_date, :check_out_date, :people_number)
+  end
 
   
 end

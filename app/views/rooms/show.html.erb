@@ -1,4 +1,7 @@
 <div>
+
+
+
 <%= link_to "←戻る", :back %>
 <%= link_to "編集", "/rooms/#{@room.id}/edit" %>
 </div>
@@ -13,9 +16,9 @@
 
 </div>
 
-<%= form_with  model: @reservation, url: confirm_reservation_path, method: :get do |f| %>
-    <%= f.hidden_field :room_id, value: @room.id %>
-   
+
+<%= form_with  model:@reservation,  url: confirm_reservation_path, method: :get do |f| %>
+  
 <table>
 <tr>
 <th>チェックイン</th>
@@ -30,7 +33,8 @@
 <td><%= f.number_field :people_number, min: 1 %></td>
 </tr>
 </table>
+<%= f.hidden_field :room_id, value: @room.id %>
 <%= f.submit "予約する" %>
+
 <% end %>
 
- 
