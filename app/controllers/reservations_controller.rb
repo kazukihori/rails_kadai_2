@@ -8,33 +8,32 @@ class ReservationsController < ApplicationController
   end
 
   def confirm
-    
-   
-   
-  
-    @reservation = Reservation.new(reservation_create)
-    @room = @reservation.room
-    if @reservation.valid?
-      @stay_date = (@reservation.check_out_date - @reservation.check_in_date).to_i
-      @reservation.total_price  = @room.price * @reservation.people_number * @stay_date
-      redirect_to "/confirm/reservation"
-    else
-      render "rooms/show"
-      binding.pry
-    end
+      @reservation = Reservation.new(reservation_create)
+      @room = @reservation.room
+      @reservation.user = current_user
+
+      if @reservation.valid?
+        @stay_date = (@reservation.check_out_date - @reservation.check_in_date).to_i
+        @reservation.total_price  = @room.price * @reservation.people_number * @stay_date
+     else
+        render "rooms/show"
+     
+      end
+
   end
 
+  
+
   def create
-    @reservation = Reservation.new(
-      room_id: params[:reservation][:room_id],
-      check_in_date: params[:reservation][:check_in_date],
-      check_out_date: params[:reservation][:check_out_date],
-      people_number: params[:reservation][:people_number],
-      total_price: params[:reservation][:total_price]
-    )
+    @reservation = Reservation.new(reservation_save)
+    @room = @reservation.room
+   
+
 
     if @reservation.save
       redirect_to reservations_path
+    else
+      render "rooms/show"
     end
     
   end
@@ -44,5 +43,8 @@ class ReservationsController < ApplicationController
     params.require(:reservation).permit(:room_id, :check_in_date, :check_out_date, :people_number)
   end
 
+  def reservation_save
+    params.require(:reservation).permit(:room_id, :check_in_date, :check_out_date, :people_number, :user_id, :total_price)
+  end
   
 end

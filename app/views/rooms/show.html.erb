@@ -1,7 +1,15 @@
+
+<% if @reservation.errors.any? %>
+  <div class = "alert">
+    <ul>
+      <% @reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div>
-
-
-
 <%= link_to "←戻る", :back %>
 <%= link_to "編集", "/rooms/#{@room.id}/edit" %>
 </div>
@@ -17,7 +25,7 @@
 </div>
 
 
-<%= form_with  model:@reservation,  url: confirm_reservation_path, method: :get do |f| %>
+<%= form_with  model: @reservation,  url: confirm_reservation_path,  method: :get do |f| %>
   
 <table>
 <tr>

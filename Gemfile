@@ -28,6 +28,8 @@ gem 'devise-i18n'
 gem 'carrierwave'
 gem 'mini_magick'
 
+gem 'rails-i18n'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
