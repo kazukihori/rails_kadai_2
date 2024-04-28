@@ -1,0 +1,29 @@
+<h3>設定</h3>
+<h2>プロフィール</h2>
+
+<%= form_for current_user, url: profile_update_path do |f| %>
+    <table>
+    <tr>
+      <th><%= f.label "アカウント画像" %></th>
+      <td><%= f.file_field :user_img %></td>
+    </tr>
+    <tr>
+      <th><%= f.label "名前" %></th>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <th><%= f.label "自己紹介" %></th>
+      <td><%= f.text_area :introduction %></td>
+    </tr>
+    </table>
+
+    
+      <%= f.submit "更新" %>
+      <%= link_to "トップページに戻る", "/" %>
+
+   <% end %>
+
+
+
+
+

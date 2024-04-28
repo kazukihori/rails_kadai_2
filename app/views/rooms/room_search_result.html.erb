@@ -1,0 +1,25 @@
+
+<h2><%= "#{@cnt}件が見つかりました" %></h2>
+<div>
+<%= form_tag(area_search_path, method: :get) do %>
+    <%= text_field_tag :search, placeholder="エリア名を入力" %>
+    <%= submit_tag "検索", :name => nil %>
+    <% end %>
+
+    <%= form_tag(search_path, method: :get) do %>
+        <%= text_field_tag :search, placeholder="キーワード名を入力" %>
+        <%= submit_tag "検索", :name => nil %>
+        <% end %>
+</div>
+
+<table>
+<tr>
+<th>施設名</th><th>住所</th><th>施設紹介</th><th>料金</th>
+</tr>
+<% @rooms.each do |room| %>
+<tr>
+<td><%= room.name %></td><td><%= room.address %></td><td><%= room.room_introduction %></td><td><%= room.price %></td><td><%= link_to "詳細はこちら" , "/rooms/#{room.id}" %></td>
+</tr>
+
+<% end %>
+</table>

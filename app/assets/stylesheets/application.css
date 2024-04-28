@@ -13,3 +13,79 @@
  *= require_tree .
  *= require_self
  */
+ body{
+   margin: 0;
+}
+
+.header_container{
+   width: 100%;
+   background-color: orange;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+.header_title{
+   color: #fff;
+   border: 5px;
+   font-size: 35px;
+}
+.header_items{
+   display: flex;
+   justify-content: space-between;
+}
+.header_items p{
+   padding: 10px;
+}
+.header_buttons{
+   display: flex;
+   justify-content: space-between;
+   padding: 20px;
+   position: relative;
+}
+.dropdown_body{
+   width: 200px;  
+   background-color: #fff;
+   border-radius: 4px;
+   overflow:hidden;
+   position: absolute;
+   top: 80px;
+   right: 20px;
+   display: none;
+}
+.dropdown_btn{
+   display: block;
+}
+.dropdown_btn.is-open + .dropdown_body{
+   display: block;
+   z-index: 99;
+}
+.dropdown_list{
+   margin: 0;
+   padding: 0;
+}
+.dropdown_item{
+   display: block;
+}
+.header_buttons button{
+   padding: 10px;
+   margin-right: 10px;
+}
+.footer_container{
+   width: 100%;
+   height: 400px;
+   background-color: rgb(4, 34, 103);
+   display: flex;
+   align-items: center;
+}
+.footer_title{
+   color: #fff;
+   border: 5px;
+   font-size: 50px;
+   margin: 0;
+}
+.footer_subtitle{
+   color: #fff;
+   border: 3px;
+   font-size: 15px;
+   margin: 0;
+}
